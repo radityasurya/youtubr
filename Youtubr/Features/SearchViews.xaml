@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Youtubr.Features.SearchViews"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Youtubr.Features"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="737.288"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <Thickness x:Key="ColumnMargin">10 10 10 5</Thickness>
+        <Thickness x:Key="ControlMargin">7 5 0 0</Thickness>
+        <Thickness x:Key="ButtonMargin">0,20,0,0</Thickness>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Style="{DynamicResource DescriptionHeaderStyle}" Content="Keyword" HorizontalAlignment="Left" />
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="{StaticResource ControlMargin}"
+                         Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                         Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.UseFloatingWatermark="True"
+                         Controls:TextBoxHelper.Watermark="Your Keyword">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return"
+                                    Command="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TextBox}, Path=Text, Mode=OneWay}" />
+            </TextBox.InputBindings>
+            <TextBox.Style>
+                <Style BasedOn="{StaticResource SearchMetroTextBox}" TargetType="{x:Type TextBox}">
+                    <Style.Triggers>
+                        <Trigger Property="Controls:TextBoxHelper.HasText" Value="True">
+                            <Setter Property="Controls:TextBoxHelper.ButtonContent" Value="r" />
+                            <Setter Property="Controls:TextBoxHelper.ButtonContentTemplate" Value="{x:Null}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button x:Name="btnSearch" Grid.Row="2" Width="100"
+                    Margin="{DynamicResource ButtonMargin}"
+                    Content="Search"
+                    Style="{DynamicResource AccentedSquareButtonStyle}" HorizontalAlignment="Right" Click="btnSearch_Click" />
+    </Grid>
+</UserControl>

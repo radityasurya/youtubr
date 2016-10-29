@@ -12,27 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MahApps.Metro.Controls;
-using MaterialDesignColors;
-using MaterialDesignThemes.Wpf;
 
-namespace Youtubr
+namespace Youtubr.Features
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ChannelViews.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class ChannelViews : UserControl
     {
-        public MainWindow()
+        public ChannelViews()
         {
             InitializeComponent();
-
-            ApplyBase(true);
-        }
-
-        private static void ApplyBase(bool isDark)
-        {
-            new PaletteHelper().SetLightDark(isDark);
         }
     }
 }
